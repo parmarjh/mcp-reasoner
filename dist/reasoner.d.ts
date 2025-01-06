@@ -11,6 +11,6 @@ export declare class Reasoner {
     getCurrentStrategyName(): ReasoningStrategy;
     getBestPath(): Promise<ThoughtNode[]>;
     clear(): Promise<void>;
-    setStrategy(strategyType: ReasoningStrategy): void;
+    setStrategy(strategyType: ReasoningStrategy, beamWidth?: number, numSimulations?: number): void;
     getAvailableStrategies(): ReasoningStrategy[];
 }

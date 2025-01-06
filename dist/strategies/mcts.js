@@ -2,12 +2,13 @@ import { v4 as uuidv4 } from 'uuid';
 import { CONFIG } from '../types.js';
 import { BaseStrategy } from './base.js';
 export class MonteCarloTreeSearchStrategy extends BaseStrategy {
-    constructor(stateManager) {
+    constructor(stateManager, numSimulations = CONFIG.numSimulations) {
         super(stateManager);
         this.explorationConstant = Math.sqrt(2);
         this.simulationDepth = CONFIG.maxDepth;
-        this.numSimulations = 50;
         this.root = null;
+        // Ensure numSimulations is within reasonable bounds
+        this.numSimulations = Math.max(1, Math.min(150, numSimulations));
     }
     async processThought(request) {
         const nodeId = uuidv4();

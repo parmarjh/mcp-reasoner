@@ -5,5 +5,5 @@ export declare enum ReasoningStrategy {
     MCTS = "mcts"
 }
 export declare class StrategyFactory {
-    static createStrategy(type: ReasoningStrategy, stateManager: StateManager): BaseStrategy;
+    static createStrategy(type: ReasoningStrategy, stateManager: StateManager, beamWidth?: number, numSimulations?: number): BaseStrategy;
 }

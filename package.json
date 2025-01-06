@@ -1,6 +1,6 @@
 {
   "name": "mcp-reasoner",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "MCP Reasoner with multiple reasoning strategies including Beam Search and Monte Carlo Tree Search",
   "type": "module",
   "main": "dist/index.js",

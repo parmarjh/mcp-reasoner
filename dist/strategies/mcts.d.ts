@@ -3,9 +3,9 @@ import { BaseStrategy } from './base.js';
 export declare class MonteCarloTreeSearchStrategy extends BaseStrategy {
     private readonly explorationConstant;
     private readonly simulationDepth;
-    private readonly numSimulations;
+    private numSimulations;
     private root;
-    constructor(stateManager: any);
+    constructor(stateManager: any, numSimulations?: number);
     processThought(request: ReasoningRequest): Promise<ReasoningResponse>;
     private runSimulations;
     private select;

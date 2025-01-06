@@ -15,6 +15,8 @@ export interface ReasoningRequest {
   nextThoughtNeeded: boolean;
   parentId?: string;   // For branching thoughts
   strategyType?: string; // Strategy to use for reasoning
+  beamWidth?: number;  // Number of top paths to maintain (n-sampling)
+  numSimulations?: number; // Number of MCTS simulations to run
 }
 
 export interface ReasoningResponse {
@@ -43,5 +45,6 @@ export const CONFIG = {
   minScore: 0.5,    // Threshold for path viability
   temperature: 0.7, // For thought diversity
   cacheSize: 1000,  // LRU cache size
-  defaultStrategy: 'beam_search' // Default reasoning strategy
+  defaultStrategy: 'beam_search', // Default reasoning strategy
+  numSimulations: 50 // Default number of MCTS simulations
 } as const;

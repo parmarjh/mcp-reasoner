@@ -3,7 +3,7 @@ import { BaseStrategy } from './base.js';
 export declare class BeamSearchStrategy extends BaseStrategy {
     private beamWidth;
     private beams;
-    constructor(stateManager: any, beamWidth?: 3);
+    constructor(stateManager: any, beamWidth?: number);
     processThought(request: ReasoningRequest): Promise<ReasoningResponse>;
     private calculatePossiblePaths;
     getBestPath(): Promise<ThoughtNode[]>;

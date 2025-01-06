@@ -14,6 +14,8 @@ export interface ReasoningRequest {
     nextThoughtNeeded: boolean;
     parentId?: string;
     strategyType?: string;
+    beamWidth?: number;
+    numSimulations?: number;
 }
 export interface ReasoningResponse {
     nodeId: string;
@@ -40,4 +42,5 @@ export declare const CONFIG: {
     readonly temperature: 0.7;
     readonly cacheSize: 1000;
     readonly defaultStrategy: "beam_search";
+    readonly numSimulations: 50;
 };

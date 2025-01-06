@@ -4,5 +4,6 @@ export const CONFIG = {
     minScore: 0.5, // Threshold for path viability
     temperature: 0.7, // For thought diversity
     cacheSize: 1000, // LRU cache size
-    defaultStrategy: 'beam_search' // Default reasoning strategy
+    defaultStrategy: 'beam_search', // Default reasoning strategy
+    numSimulations: 50 // Default number of MCTS simulations
 };

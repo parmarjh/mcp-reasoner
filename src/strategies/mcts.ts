@@ -11,11 +11,13 @@ interface MCTSNode extends ThoughtNode {
 export class MonteCarloTreeSearchStrategy extends BaseStrategy {
   private readonly explorationConstant = Math.sqrt(2);
   private readonly simulationDepth = CONFIG.maxDepth;
-  private readonly numSimulations = 50;
+  private numSimulations: number;
   private root: MCTSNode | null = null;
 
-  constructor(stateManager: any) {
+  constructor(stateManager: any, numSimulations: number = CONFIG.numSimulations) {
     super(stateManager);
+    // Ensure numSimulations is within reasonable bounds
+    this.numSimulations = Math.max(1, Math.min(150, numSimulations));
   }
 
   public async processThought(request: ReasoningRequest): Promise<ReasoningResponse> {

@@ -6,12 +6,12 @@ export var ReasoningStrategy;
     ReasoningStrategy["MCTS"] = "mcts";
 })(ReasoningStrategy || (ReasoningStrategy = {}));
 export class StrategyFactory {
-    static createStrategy(type, stateManager) {
+    static createStrategy(type, stateManager, beamWidth, numSimulations) {
         switch (type) {
             case ReasoningStrategy.BEAM_SEARCH:
-                return new BeamSearchStrategy(stateManager);
+                return new BeamSearchStrategy(stateManager, beamWidth);
             case ReasoningStrategy.MCTS:
-                return new MonteCarloTreeSearchStrategy(stateManager);
+                return new MonteCarloTreeSearchStrategy(stateManager, numSimulations);
             default:
                 throw new Error(`Unknown strategy type: ${type}`);
         }

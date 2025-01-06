@@ -22,7 +22,9 @@ function processInput(input) {
         thoughtNumber: Number(input.thoughtNumber || 0),
         totalThoughts: Number(input.totalThoughts || 0),
         nextThoughtNeeded: Boolean(input.nextThoughtNeeded),
-        strategyType: input.strategyType
+        strategyType: input.strategyType,
+        beamWidth: Number(input.beamWidth || 3),
+        numSimulations: Number(input.numSimulations || 50)
     };
     // Validate
     if (!result.thought) {
@@ -33,6 +35,12 @@ function processInput(input) {
     }
     if (result.totalThoughts < 1) {
         throw new Error("totalThoughts must be >= 1");
+    }
+    if (result.beamWidth < 1 || result.beamWidth > 10) {
+        throw new Error("beamWidth must be between 1 and 10");
+    }
+    if (result.numSimulations < 1 || result.numSimulations > 150) {
+        throw new Error("numSimulations must be between 1 and 150");
     }
     return result;
 }
@@ -66,6 +74,18 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
                         type: "string",
                         enum: Object.values(ReasoningStrategy),
                         description: "Reasoning strategy to use (beam_search or mcts)"
+                    },
+                    beamWidth: {
+                        type: "integer",
+                        description: "Number of top paths to maintain (n-sampling). Defaults to 3 if not specified",
+                        minimum: 1,
+                        maximum: 10
+                    },
+                    numSimulations: {
+                        type: "integer",
+                        description: "Number of MCTS simulations to run. Defaults to 50 if not specified",
+                        minimum: 1,
+                        maximum: 150
                     }
                 },
                 required: ["thought", "thoughtNumber", "totalThoughts", "nextThoughtNeeded"]
@@ -92,7 +112,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             thoughtNumber: step.thoughtNumber,
             totalThoughts: step.totalThoughts,
             nextThoughtNeeded: step.nextThoughtNeeded,
-            strategyType: step.strategyType
+            strategyType: step.strategyType,
+            beamWidth: step.beamWidth,
+            numSimulations: step.numSimulations
         });
         // Get reasoning stats
         const stats = await reasoner.getStats();
