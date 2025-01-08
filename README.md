@@ -1,6 +1,8 @@
 # MCP Reasoner
 A systematic reasoning MCP server implementation for Claude Desktop featuring both Beam Search and Monte Carlo Tree Search (MCTS) capabilities.
 
+<a href="https://glama.ai/mcp/servers/pz4pgwvn1c"><img width="380" height="200" src="https://glama.ai/mcp/servers/pz4pgwvn1c/badge" alt="Reasoner MCP server" /></a>
+
 ## Features
 * Dual search strategies:
    * Beam search with configurable width
